@@ -54,3 +54,4 @@ git push -u origin main
 ## Nota sobre tus datos
 
 Como se guardan en `localStorage`, tus hábitos viven únicamente en el navegador/dispositivo donde los uses. Si entras desde otro navegador o computadora, vas a ver la app vacía. Si algún día quieres sincronizar entre dispositivos, se puede agregar una base de datos más adelante (por ejemplo con Supabase o Firebase).
+# Habitos

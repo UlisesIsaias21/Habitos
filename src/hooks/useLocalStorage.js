@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function useLocalStorage(key, initialValue) {
   const [value, setValue] = useState(() => {
@@ -10,8 +10,6 @@ export function useLocalStorage(key, initialValue) {
       return initialValue
     }
   })
-
-  const first = useRef(true)
 
   useEffect(() => {
     try {

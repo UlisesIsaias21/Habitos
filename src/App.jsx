@@ -16,12 +16,20 @@ function uid() {
   return Math.random().toString(36).slice(2, 10)
 }
 
+const DEFAULT_HABITS = [
+  { id: 'default-1', name: 'Tomar agua', emoji: '💧' },
+  { id: 'default-2', name: 'Leer 20 páginas', emoji: '📖' },
+  { id: 'default-3', name: 'Hacer ejercicio', emoji: '🏃' },
+  { id: 'default-4', name: 'Meditar 5 minutos', emoji: '🧘' },
+  { id: 'default-5', name: 'Dormir temprano', emoji: '😴' },
+].map((h) => ({ ...h, createdAt: todayKey() }))
+
 function prefersDark() {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
 export default function App() {
-  const [habits, setHabits] = useLocalStorage(STORAGE_HABITS, [])
+  const [habits, setHabits] = useLocalStorage(STORAGE_HABITS, DEFAULT_HABITS)
   const [completions, setCompletions] = useLocalStorage(STORAGE_COMPLETIONS, {})
   const [theme, setTheme] = useLocalStorage(STORAGE_THEME, prefersDark() ? 'dark' : 'light')
   const [tab, setTab] = useState('hoy')
@@ -45,7 +53,6 @@ export default function App() {
       return { ...prev, [today]: nextList }
     })
   }
-
   function saveHabit(data) {
     if (modalState && modalState !== 'new') {
       setHabits((prev) => prev.map((h) => (h.id === modalState.id ? { ...h, ...data } : h)))
